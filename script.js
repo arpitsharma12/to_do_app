@@ -18,7 +18,7 @@ addbtn.addEventListener(`click`, function () {
   newtaskpop.classList.remove(`hidden`);
   noTaskErrorPopup.textContent = ``;
   taskinput.value="";
-  location.reload()
+  location.reload();
 });
 
 cancelbtn.addEventListener(`click`, function () {
