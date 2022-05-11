@@ -349,5 +349,5 @@ completed.addEventListener(`click`, async function () {
 
   maincontainer.innerHTML = html;
 })
-
+location.reload() 
 
