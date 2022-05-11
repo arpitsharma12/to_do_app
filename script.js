@@ -35,7 +35,6 @@ async function checkfunc() {
     arraycheck.push(elem.task);
   })
 }
-location.reload();
 
 async function sub() {
   let value = taskinput.value;
