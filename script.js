@@ -18,6 +18,7 @@ addbtn.addEventListener(`click`, function () {
   newtaskpop.classList.remove(`hidden`);
   noTaskErrorPopup.textContent = ``;
   taskinput.value="";
+  location.reload()
 });
 
 cancelbtn.addEventListener(`click`, function () {
@@ -35,7 +36,7 @@ async function checkfunc() {
     arraycheck.push(elem.task);
   })
 }
-location.reload() 
+ 
 
 async function sub() {
   let value = taskinput.value;
