@@ -41,10 +41,10 @@ async function sub() {
   let value01 = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase().trim();
 
   if (!value01) {
-    noTaskErrorPopup.innerHTML = `Please Enter Task`
+    noTaskErrorPopup.innerText = `Please Enter Task`
   } else {
     if (arraycheck.includes(value01)) {
-      noTaskErrorPopup.innerHTML = `Task Already Exist`
+      noTaskErrorPopup.innerText = `Task Already Exist`
     } else {
       let res = await fetch(url, {
         method: `POST`,
@@ -111,7 +111,7 @@ async function renderdata() {
     });
   }
   catch {
-    noTaskErrorPopup.innerHTML = `Error Fetching Data Please Check the Server`;
+    noTaskErrorPopup.innerText = `Error Fetching Data Please Check the Server`;
   }
 
   maincontainer.innerHTML = html;
@@ -187,7 +187,7 @@ async function upd() {
   let newvalue = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase().trim();
 
   if (arraycheck.includes(newvalue)) {
-    noTaskErrorPopup.innerHTML = `Task Already Exist`;
+    noTaskErrorPopup.innerText = `Task Already Exist`;
   } else {
     let res = await fetch(url);
     let data = await res.json();
@@ -233,7 +233,7 @@ search.addEventListener(`keyup`, async function () {
 
     const searchval = search.value;
     const searchvalue_01 =
-      searchval.charAt(0).toUpperCase() + searchval.slice(1).toLowerCase();
+      searchval.charAt(0).toUpperCase() + searchval.slice(1).toLowerCase().trim();
 
     noTaskErrorPopup.innerHTML = ``;
 
@@ -277,7 +277,7 @@ search.addEventListener(`keyup`, async function () {
   });
 
   if (!maincontainer.innerHTML) {
-    noTaskErrorPopup.innerHTML = `No Search Found`;
+    noTaskErrorPopup.innerText = `No Search Found`;
   }
 });
 
@@ -287,7 +287,7 @@ const alltasks = document.querySelector(`.Alltasks`);
 alltasks.addEventListener(`click`, async function () {
   await renderdata();
   if (!maincontainer.innerHTML) {
-    errortext.innerHTML = `No Tasks Exist`;
+    errortext.innerText = `No Tasks Exist`;
   }
 })
 
