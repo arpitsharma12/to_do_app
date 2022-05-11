@@ -1,5 +1,5 @@
 //init
-const errormsg = document.querySelector(`.errormsg`);
+
 const url = `https://arpit-todo.herokuapp.com/posts`;
 renderdata();
 checkfunc();
@@ -10,17 +10,20 @@ const newtaskpop = document.querySelector(`.newnewtask`);
 const cancelbtn = document.querySelector(`.canceltaskbtn`);
 const taskinput = document.querySelector(`.insertnew`);
 const addtaskbtn = document.querySelector(`.addtaskbtn`);
+const noTaskErrorPopup=document.querySelector('.no_task_update')
 
 let arraycheck = [];
 
 addbtn.addEventListener(`click`, function () {
   newtaskpop.classList.remove(`hidden`);
-  errormsg.textContent = ``;
+  noTaskErrorPopup.textContent = ``;
+  taskinput.value="";
 });
 
 cancelbtn.addEventListener(`click`, function () {
   newtaskpop.classList.add(`hidden`);
-  errormsg.textContent = ``;
+  noTaskErrorPopup.textContent = ``;
+  errorfunc()
 });
 
 
@@ -38,10 +41,10 @@ async function sub() {
   let value01 = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase().trim();
 
   if (!value01) {
-    errormsg.innerHTML = `Please Enter Task`
+    noTaskErrorPopup.innerHTML = `Please Enter Task`
   } else {
     if (arraycheck.includes(value01)) {
-      errormsg.innerHTML = `Task Already Exist`
+      noTaskErrorPopup.innerHTML = `Task Already Exist`
     } else {
       let res = await fetch(url, {
         method: `POST`,
@@ -108,7 +111,7 @@ async function renderdata() {
     });
   }
   catch {
-    errormsg.innerHTML = `Error Fetching Data Please Check the Server`;
+    noTaskErrorPopup.innerHTML = `Error Fetching Data Please Check the Server`;
   }
 
   maincontainer.innerHTML = html;
@@ -118,7 +121,7 @@ async function renderdata() {
 
 function errorfunc() {
   if (!maincontainer.innerHTML) {
-    errormsg.innerHTML = `No Tasks Exist`;
+    noTaskErrorPopup.innerText = `No Tasks Exist`;
   }
 }
 // delete task 
@@ -175,7 +178,7 @@ async function updatepop(id) {
 
 updcancel.addEventListener(`click`, function () {
   updatetaskpop.classList.add(`hidden`);
-  errormsg.textContent = ``;
+  noTaskErrorPopup.textContent = ``;
 })
 
 
@@ -184,7 +187,7 @@ async function upd() {
   let newvalue = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase().trim();
 
   if (arraycheck.includes(newvalue)) {
-    errormsg.innerHTML = `Task Already Exist`;
+    noTaskErrorPopup.innerHTML = `Task Already Exist`;
   } else {
     let res = await fetch(url);
     let data = await res.json();
@@ -207,7 +210,7 @@ async function upd() {
 
 updbtn.addEventListener(`click`, upd)
 
-addtaskbtn.addEventListener(`click`, updatepop)
+// addtaskbtn.addEventListener(`click`, updatepop)
 
 // ENter submit
 
@@ -232,7 +235,7 @@ search.addEventListener(`keyup`, async function () {
     const searchvalue_01 =
       searchval.charAt(0).toUpperCase() + searchval.slice(1).toLowerCase();
 
-    errormsg.innerHTML = ``;
+    noTaskErrorPopup.innerHTML = ``;
 
     if (elem.task.includes(searchvalue_01)) {
       console.log(elem);
@@ -274,7 +277,7 @@ search.addEventListener(`keyup`, async function () {
   });
 
   if (!maincontainer.innerHTML) {
-    errormsg.innerHTML = `No Search Found`;
+    noTaskErrorPopup.innerHTML = `No Search Found`;
   }
 });
 
