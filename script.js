@@ -124,7 +124,7 @@ function errorfunc() {
 // delete task 
 
 async function deletetask(id) {
-  await fetch(`http://localhost:3000/posts/${id}`, {
+  await fetch(`https://arpit-todo.herokuapp.com/posts/${id}`, {
     method: `DELETE`,
   });
   await renderdata();
@@ -136,7 +136,7 @@ async function funcdone(id) {
   let data = await res.json();
 
   if (data.status) {
-    await fetch(`http://localhost:3000/posts/${id}`, {
+    await fetch(`https://arpit-todo.herokuapp.com/posts/${id}`, {
       method: `PUT`,
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
@@ -146,7 +146,7 @@ async function funcdone(id) {
       }),
     });
   } else {
-    await fetch(`http://localhost:3000/posts/${id}`, {
+    await fetch(`https://arpit-todo.herokuapp.com/posts/${id}`, {
       method: `PUT`,
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
@@ -189,7 +189,7 @@ async function upd() {
     let res = await fetch(url);
     let data = await res.json();
 
-    await fetch(`http://localhost:3000/posts/${idnum}`, {
+    await fetch(`https://arpit-todo.herokuapp.com/posts/${idnum}`, {
       method: `PUT`,
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
