@@ -56,9 +56,11 @@ async function sub() {
       })
       if (res.ok) {
         renderdata();
+        location.reload();
       }
 
       newtaskpop.classList.add(`hidden`);
+      
     }
   }
 }
@@ -131,6 +133,7 @@ async function deletetask(id) {
     method: `DELETE`,
   });
   await renderdata();
+  location.reload();
 }
 
 // checked and UnChecked.........
@@ -187,7 +190,7 @@ async function upd() {
   let newvalue = value.charAt(0).toUpperCase() + value.slice(1).toLowerCase().trim();
 
   if (arraycheck.includes(newvalue)) {
-    noTaskErrorPopup.innerText = `Task Already Exist`;
+    noTaskErrorPopup.innerHTML = `Task Already Exist`;
   } else {
     let res = await fetch(url);
     let data = await res.json();
@@ -205,6 +208,7 @@ async function upd() {
       renderdata();
     }
     updatetaskpop.classList.add(`hidden`);
+    location.reload();
   }
 }
 
